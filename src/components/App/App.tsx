@@ -31,11 +31,7 @@ export default function App() {
   }
 
   function resetVotes() {
-    setVote({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
+    setVote(votes);
   }
 
   return (

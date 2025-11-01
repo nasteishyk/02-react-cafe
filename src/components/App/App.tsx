@@ -24,30 +24,35 @@ export default function App() {
     : 0;
 
   function handleVote(type: VoteType) {
-    setVote(prevVote => ({
+    setVote((prevVote) => ({
       ...prevVote,
       [type]: prevVote[type] + 1,
     }));
   }
 
   function resetVotes() {
-    setVote({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
+    setVote(votes);
   }
 
   return (
     <>
-      <div className={s.app}>{<CafeInfo />}</div>
-      <VoteOptions onVote = { handleVote } onReset = { resetVotes } canReset = { totalVotes > 0 }/>
-      {totalVotes > 0 ? (
-        <VoteStats votes = { vote } totalVotes = { totalVotes } positiveRate = { positiveRate }/>
-      ) : (
-        <Notification />
-      )}
-      
+      <div className={s.app}>
+        {<CafeInfo />}
+        <VoteOptions
+          onVote={handleVote}
+          onReset={resetVotes}
+          canReset={totalVotes > 0}
+        />
+        {totalVotes > 0 ? (
+          <VoteStats
+            votes={vote}
+            totalVotes={totalVotes}
+            positiveRate={positiveRate}
+          />
+        ) : (
+          <Notification />
+        )}
+      </div>
     </>
   );
 }
